@@ -23,12 +23,11 @@ public class Student {
     @Column(unique = true)
     private String name;
 
-    @OneToOne()
-    @JoinColumn(name = "address_id" , referencedColumnName = "id")
+    @OneToOne(cascade = CascadeType.ALL)  // Add cascade here
+    @JoinColumn(name = "address_id", referencedColumnName = "id")
     private Address address;
 
     @JsonManagedReference
-    @OneToMany(mappedBy = "studentId",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<Subject> subjects;
-
 }

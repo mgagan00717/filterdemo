@@ -77,4 +77,21 @@ public class FilterSpecification<T> {
             }
             };
     }
+
+    public Specification<T> getSearchName(String name) {
+        return (root, query, criteriaBuilder) -> {
+
+            Predicate Like = criteriaBuilder.like(root.get("name"), "%"+name+"%");
+            System.out.println(Like);
+            return criteriaBuilder.and(Like);
+        };
+    }
+
+    public Specification<T> getSearchBetween(String name) {
+        return (root, query, criteriaBuilder) -> {
+            String[] split = name.split(",");
+            Predicate Like = criteriaBuilder.between(root.get("id"),split[0],split[1]);
+            return criteriaBuilder.and(Like);
+        };
+    }
 }
