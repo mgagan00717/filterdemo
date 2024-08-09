@@ -40,10 +40,29 @@ public class filterController {
         return filterService.getStudentByAddressCity(city);
     }
 
-//    @GetMapping("/getStudentBySubject/{subject}")
-//    public List<Student> getStudentBySubject(@PathVariable String subject){
-//        return filterService.getStudentBySubject(subject);
-//    }
+    @GetMapping("/getStudentBySubject/{subject}")
+    public List<Student> getStudentBySubject(@PathVariable String subject){
+        return filterService.getStudentBySubject(subject);
+    }
+
+    @GetMapping("/getStudentBySubjectid/{id}")
+    public List<Student> getStudentBySubject(@PathVariable int id){
+        return filterService.getStudentById(id);
+    }
+
+    @GetMapping("/getStudentBySubString")
+    public List<Student> getSearchName(@RequestParam(value = "Search")String name){
+        Specification<Student> nu = specificaton.getSearchName(name);
+        return filterService.getStudentByNameDto(nu);
+    }
+
+
+    @GetMapping("/getStudentBetweenIDs/{ids}")
+    public List<Student> getSearchBetween(@PathVariable String ids){
+        Specification<Student> nu = specificaton.getSearchBetween(ids);
+        return filterService.getStudentBetween(nu);
+    }
+
 
 //    @PostMapping("/specification")
 //    public List<Student> getStudent(){
@@ -56,6 +75,14 @@ public class filterController {
         return filterService.getStudentByDto(newi);
     }
 
+   @PostMapping("/addStudent")
+   public void addStudent(@RequestBody Student student){
+       filterService.addStudent(student);
+  }
 
+  @DeleteMapping("/deleteStudent/{id}")
+    public void deleteStudent(@PathVariable int id){
+        filterService.deleteStudent(id);
 
+  }
 }

@@ -45,6 +45,31 @@ public class FilterService {
         return repo.findAll(newi);
     }
 
+    public List<Student> getStudentBySubject(String subject) {
+        return repo.findBySubjectsName(subject);
+    }
+
+    public List<Student> getStudentById(int id) {
+        return repo.findBySubjectsId(id);
+    }
+
+    public List<Student> getStudentByNameDto(Specification<Student> nu) {
+        return repo.findAll(nu);
+    }
+
+    public List<Student> getStudentBetween(Specification<Student> nu) {
+        return repo.findAll(nu);
+    }
+
+    public void addStudent(Student student) {
+        repo.save(student);
+    }
+
+    public void deleteStudent(int id) {
+        repo.deleteById((long) id);
+    }
+
+
 //    public List<Student> getStudentBySubject(String subject) {
 //        return repo.findBySubjectName(subject);
 //    }

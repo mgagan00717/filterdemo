@@ -15,4 +15,5 @@ public interface StudentRepo extends JpaRepository<Student, Long>, JpaSpecificat
 
     List<Student> findByAddressCity(String City);
     List<Student> findBySubjectsName(String name);
+    List<Student> findBySubjectsId(int id);
 }
